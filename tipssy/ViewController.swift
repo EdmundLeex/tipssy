@@ -23,6 +23,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tipPercentage = defaults.doubleForKey("tipPercentage")
+        let percentageText = String(format: "%.2f%", tipPercentage * 100)
+        percentageLabel.text = "\(percentageText)%"
+        percentageSlider.setValue(Float(tipPercentage), animated: false)
+        percentageTextField.hidden = true
+        let percentageStr = String(format: "%.2f%", tipPercentage * 100)
+        percentageTextField.text = "\(percentageStr)%"
         
         navigationItem.backBarButtonItem = UIBarButtonItem(
             title: "Done",
@@ -33,13 +40,8 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        tipPercentage = defaults.doubleForKey("tipPercentage")
-        let percentageText = String(format: "%.2f%", tipPercentage * 100)
-        percentageLabel.text = "\(percentageText)%"
-        percentageSlider.setValue(Float(tipPercentage), animated: false)
-        percentageTextField.hidden = true
-        let percentageStr = String(format: "%.2f%", tipPercentage * 100)
-        percentageTextField.text = "\(percentageStr)%"
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,7 +100,7 @@ class ViewController: UIViewController {
     
     func setTipPercentage(percentage: Double) {
         tipPercentage = percentage
-        defaults.setDouble(tipPercentage, forKey: "tipPercentage")
+//        defaults.setDouble(tipPercentage, forKey: "tipPercentage")
     }
     
     func calculateTip(bill: Double, percentage: Double) -> (Double, Double) {
