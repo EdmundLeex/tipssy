@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var percentageLabel: UILabel!
     @IBOutlet weak var percentageTextField: UITextField!
 
-    var percentage: Double = 0.1
+    var tipPercentage: Double = 0.1
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +33,12 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        percentage = defaults.doubleForKey("tipPercentage")
-        let percentageText = String(format: "%.2f%", percentage * 100)
+        tipPercentage = defaults.doubleForKey("tipPercentage")
+        let percentageText = String(format: "%.2f%", tipPercentage * 100)
         percentageLabel.text = "\(percentageText)%"
-        percentageSlider.setValue(Float(percentage), animated: false)
+        percentageSlider.setValue(Float(tipPercentage), animated: false)
         percentageTextField.hidden = true
-        let percentageStr = String(format: "%.2f%", percentage * 100)
+        let percentageStr = String(format: "%.2f%", tipPercentage * 100)
         percentageTextField.text = "\(percentageStr)%"
     }
 
@@ -50,11 +50,11 @@ class ViewController: UIViewController {
     @IBAction func onFieldsChange(sender: AnyObject) {
         let bill = Double(billTextField.text!) ?? 0
         
-        let (tip, total) = calculateTip(bill, percentage: percentage)
+        let (tip, total) = calculateTip(bill, percentage: tipPercentage)
         
         tipLabel.text = String(format: "$%.2f", tip)
         totalLabel.text = String(format: "$%.2f", total)
-        percentageSlider.setValue(Float(percentage), animated: true)
+        percentageSlider.setValue(Float(tipPercentage), animated: true)
     }
     
     @IBAction func onBodyTap(sender: AnyObject) {
@@ -64,9 +64,11 @@ class ViewController: UIViewController {
     @IBAction func onPercentageTextFieldChange(sender: AnyObject) {
         percentageLabel.hidden = false
         percentageTextField.hidden = true
-        let previousPercentage = percentage
-        percentage = Double(percentageTextField.text!.stringByReplacingOccurrencesOfString("%", withString: ""))! / 100 ?? previousPercentage
-        let percentageStr = String(format: "%.2f%", percentage * 100)
+        let previousPercentage = tipPercentage
+        setTipPercentage(
+            Double(percentageTextField.text!.stringByReplacingOccurrencesOfString("%", withString: ""))! / 100 ?? previousPercentage
+        )
+        let percentageStr = String(format: "%.2f%", tipPercentage * 100)
         percentageLabel.text = "\(percentageStr)%"
         
         onFieldsChange(self)
@@ -77,12 +79,12 @@ class ViewController: UIViewController {
         let percentageText = String(format: "%.2f%", sliderPercentage * 100)
         
         percentageLabel.text = "\(percentageText)%"
-        percentage = Double(sliderPercentage)
+        setTipPercentage(Double(sliderPercentage))
         onFieldsChange(self)
     }
 
     @IBAction func onPercentageLabelClick(sender: AnyObject) {
-        let percentageStr = String(format: "%.2f%", percentage * 100)
+        let percentageStr = String(format: "%.2f%", tipPercentage * 100)
         percentageTextField.text = String("\(percentageStr)%")
         percentageLabel.hidden = true
         percentageTextField.hidden = false
@@ -93,6 +95,11 @@ class ViewController: UIViewController {
     }
     
     private
+    
+    func setTipPercentage(percentage: Double) {
+        tipPercentage = percentage
+        defaults.setDouble(tipPercentage, forKey: "tipPercentage")
+    }
     
     func calculateTip(bill: Double, percentage: Double) -> (Double, Double) {
         let tip = getTip(bill, percentage: percentage)
