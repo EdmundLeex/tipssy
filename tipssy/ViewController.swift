@@ -23,6 +23,15 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "Done",
+            style: .Plain,
+            target: self,
+            action: nil
+        )
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         let defaults = NSUserDefaults.standardUserDefaults()
         percentage = defaults.doubleForKey("tipPercentage")
         let percentageText = String(format: "%.2f%", percentage * 100)
@@ -50,6 +59,9 @@ class ViewController: UIViewController {
     
     @IBAction func onBodyTap(sender: AnyObject) {
         view.endEditing(true)
+    }
+    
+    @IBAction func onPercentageTextFieldChange(sender: AnyObject) {
         percentageLabel.hidden = false
         percentageTextField.hidden = true
         let previousPercentage = percentage
@@ -65,17 +77,10 @@ class ViewController: UIViewController {
         let percentageText = String(format: "%.2f%", sliderPercentage * 100)
         
         percentageLabel.text = "\(percentageText)%"
-    }
-    
-    @IBAction func onPercentageSliderChanged(sender: AnyObject) {
-        let sliderPercentage = percentageSlider.value
-        let percentageText = String(format: "%.2f%", sliderPercentage * 100)
-        
-        percentageLabel.text = "\(percentageText)%"
-        
         percentage = Double(sliderPercentage)
+        onFieldsChange(self)
     }
-    
+
     @IBAction func onPercentageLabelClick(sender: AnyObject) {
         let percentageStr = String(format: "%.2f%", percentage * 100)
         percentageTextField.text = String("\(percentageStr)%")

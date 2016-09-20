@@ -15,6 +15,9 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         let percentage = defaults.doubleForKey("tipPercentage") ?? 0.0
         let percentageText = String(format: "%.2f%", percentage * 100)
         defaultPercentageTextField.text = "\(percentageText)%"
@@ -25,12 +28,22 @@ class SettingsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onSave(sender: AnyObject) {
+    override func viewWillDisappear(animated: Bool) {
         let defaultPercentage = Double(defaultPercentageTextField.text!.stringByReplacingOccurrencesOfString("%", withString: "")) ?? 0.0
         defaults.setDouble(defaultPercentage / 100, forKey: "tipPercentage")
         defaults.synchronize()
+        super.viewWillDisappear(animated)
     }
 
+    @IBAction func onDefaultPercentageTextFieldTap(sender: AnyObject) {
+        let percentage = defaults.doubleForKey("tipPercentage") ?? 0.0
+        let percentageStr = String(format: "%.2f%", percentage * 100)
+        
+        let startPosition = defaultPercentageTextField.positionFromPosition(defaultPercentageTextField.beginningOfDocument, inDirection: UITextLayoutDirection.Right, offset: 0)
+        let endPosition = defaultPercentageTextField.positionFromPosition(defaultPercentageTextField.beginningOfDocument, inDirection: UITextLayoutDirection.Right, offset: percentageStr.characters.count)
+        defaultPercentageTextField.selectedTextRange = defaultPercentageTextField.textRangeFromPosition(startPosition!, toPosition: endPosition!)
+
+    }
     /*
     // MARK: - Navigation
 
