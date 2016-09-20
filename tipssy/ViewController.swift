@@ -39,9 +39,8 @@ class ViewController: UIViewController {
         )
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
-        
+    override func viewDidAppear(animated: Bool) {
+        billTextField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
