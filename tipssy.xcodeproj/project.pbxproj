@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8801D9831DA22ABB00D0E065 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8801D9821DA22ABB00D0E065 /* NavigationViewController.swift */; };
+		8801D9851DA22EAA00D0E065 /* AppIcon.appiconset in Resources */ = {isa = PBXBuildFile; fileRef = 8801D9841DA22EAA00D0E065 /* AppIcon.appiconset */; };
 		884BA96B1D86256300F2DB25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884BA96A1D86256300F2DB25 /* AppDelegate.swift */; };
 		884BA96D1D86256300F2DB25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884BA96C1D86256300F2DB25 /* ViewController.swift */; };
 		884BA9701D86256300F2DB25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 884BA96E1D86256300F2DB25 /* Main.storyboard */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8801D9821DA22ABB00D0E065 /* NavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		8801D9841DA22EAA00D0E065 /* AppIcon.appiconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AppIcon.appiconset; path = tipssy/icon/ios/AppIcon.appiconset; sourceTree = "<group>"; };
 		884BA9671D86256300F2DB25 /* tipssy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tipssy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		884BA96A1D86256300F2DB25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		884BA96C1D86256300F2DB25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,6 +44,7 @@
 		884BA95E1D86256300F2DB25 = {
 			isa = PBXGroup;
 			children = (
+				8801D9841DA22EAA00D0E065 /* AppIcon.appiconset */,
 				884BA9691D86256300F2DB25 /* tipssy */,
 				884BA9681D86256300F2DB25 /* Products */,
 			);
@@ -60,6 +65,7 @@
 				884BA96A1D86256300F2DB25 /* AppDelegate.swift */,
 				884BA96C1D86256300F2DB25 /* ViewController.swift */,
 				884BA96E1D86256300F2DB25 /* Main.storyboard */,
+				8801D9821DA22ABB00D0E065 /* NavigationViewController.swift */,
 				884BA9711D86256300F2DB25 /* Assets.xcassets */,
 				884BA9731D86256300F2DB25 /* LaunchScreen.storyboard */,
 				884BA9761D86256300F2DB25 /* Info.plist */,
@@ -125,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8801D9851DA22EAA00D0E065 /* AppIcon.appiconset in Resources */,
 				884BA9751D86256300F2DB25 /* LaunchScreen.storyboard in Resources */,
 				884BA9721D86256300F2DB25 /* Assets.xcassets in Resources */,
 				884BA9701D86256300F2DB25 /* Main.storyboard in Resources */,
@@ -138,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8801D9831DA22ABB00D0E065 /* NavigationViewController.swift in Sources */,
 				884BA96D1D86256300F2DB25 /* ViewController.swift in Sources */,
 				884BA96B1D86256300F2DB25 /* AppDelegate.swift in Sources */,
 				884BA97D1D8632B700F2DB25 /* SettingsViewController.swift in Sources */,

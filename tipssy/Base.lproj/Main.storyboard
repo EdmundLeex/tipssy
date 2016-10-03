@@ -218,10 +218,10 @@
             </objects>
             <point key="canvasLocation" x="1245" y="402"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation View Controller-->
         <scene sceneID="S9m-0S-1RC">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4ZS-KF-tOB" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4ZS-KF-tOB" customClass="NavigationViewController" customModule="tipssy" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="EME-h7-PhQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
